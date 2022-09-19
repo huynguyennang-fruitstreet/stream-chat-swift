@@ -1,75 +1,47 @@
-// swift-tools-version:5.3
-// When used via SPM the minimum Swift version is 5.3 because we need support for resources
+// swift-tools-version:5.2
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
-import Foundation
 import PackageDescription
 
 let package = Package(
     name: "StreamChat",
-    defaultLocalization: "en",
     platforms: [
-        .iOS(.v11), .macOS(.v10_15)
+        .iOS(.v11),
     ],
     products: [
         .library(
             name: "StreamChat",
-            targets: ["StreamChat"]
-        ),
+            targets: ["StreamChat"]),
         .library(
-            name: "StreamChatUI",
-            targets: ["StreamChatUI"]
-        ),
+            name: "StreamChatCore",
+            targets: ["StreamChatCore"]),
         .library(
-            name: "StreamChatTestTools",
-            targets: ["StreamChatTestTools"]
-        ),
-        .library(
-            name: "StreamChatTestMockServer",
-            targets: ["StreamChatTestMockServer"]
-        ),
+            name: "StreamChatClient",
+            targets: ["StreamChatClient"]),
     ],
     dependencies: [
-        .package(name: "StreamChatTestHelpers", url: "https://github.com/GetStream/stream-chat-swift-test-helpers.git", .exact("0.2.4")),
-        .package(name: "Swifter", url: "https://github.com/httpswift/swifter", .exact("1.5.0"))
+        // UI
+        .package(url: "https://github.com/kean/Nuke.git", from: "8.4.0"),
+        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.0.0"),
+        .package(url: "https://github.com/kirualex/SwiftyGif.git", from: "5.2.0"),
+        .package(url: "https://github.com/RxSwiftCommunity/RxGesture.git", from: "3.0.0"),
+        // Core
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "5.1.0"),
+        // Client
+        .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0"),
     ],
     targets: [
         .target(
             name: "StreamChat",
-            exclude: ["Info.plist"],
-            resources: [.copy("Database/StreamChatModel.xcdatamodeld")]
-        ),
+            dependencies: ["StreamChatCore", "Nuke", "SnapKit", "SwiftyGif", "RxGesture"],
+            path: "Sources/UI"),
         .target(
-            name: "StreamChatUI",
-            dependencies: ["StreamChat"],
-            exclude: ["Info.plist", "Generated/L10n_template.stencil"],
-            resources: [.process("Resources")]
-        ),
-        .target(name: "StreamChatTestTools",
-                dependencies: [
-                    .target(name: "StreamChat"),
-                    .product(name: "StreamChatTestHelpers", package: "StreamChatTestHelpers"),
-                ],
-                path: "TestTools/StreamChatTestTools",
-                exclude: ["Info.plist"],
-                resources: [
-                        .process("Fixtures")
-                ]
-        ),
-        .target(name: "StreamChatTestMockServer",
-                dependencies: [
-                    .target(name: "StreamChat"),
-                    .product(name: "StreamChatTestHelpers", package: "StreamChatTestHelpers"),
-                    .product(name: "Swifter", package: "Swifter")
-                ],
-                path: "TestTools/StreamChatTestMockServer",
-                exclude: ["Info.plist"],
-                resources: [.copy("Fixtures")]
-        ),
+            name: "StreamChatCore",
+            dependencies: ["StreamChatClient", "RxSwift", .product(name: "RxCocoa", package: "RxSwift")],
+            path: "Sources/Core"),
+        .target(
+            name: "StreamChatClient",
+            dependencies: ["Starscream"],
+            path: "Sources/Client")
     ]
 )
-
-#if swift(>=5.6)
-package.dependencies.append(
-    .package(name: "SwiftDocCPlugin", url: "https://github.com/apple/swift-docc-plugin", .exact("1.0.0"))
-)
-#endif

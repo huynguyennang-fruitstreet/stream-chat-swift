@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1340"
-   version = "1.7">
+   LastUpgradeVersion = "1120"
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "799C941A247D2F80001F1104"
+               BlueprintIdentifier = "8AD5EC8E22E9A3E8005CFAC9"
                BuildableName = "StreamChat.framework"
                BlueprintName = "StreamChat"
                ReferencedContainer = "container:StreamChat.xcodeproj">
@@ -27,23 +27,51 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <TestPlans>
-         <TestPlanReference
-            reference = "container:Tests/StreamChatTests/StreamChatTestPlan.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:Tests/StreamChatTests/StreamChatFlakyTests.xctestplan">
-         </TestPlanReference>
-      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "799C9450247D59B1001F1104"
-               BuildableName = "StreamChatTests.xctest"
-               BlueprintName = "StreamChatTests"
+               BlueprintIdentifier = "8A50695623CDEA31009F127A"
+               BuildableName = "StreamChatClientTests.xctest"
+               BlueprintName = "StreamChatClientTests"
+               ReferencedContainer = "container:StreamChat.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8A559D20230D937B00E66096"
+               BuildableName = "StreamChatCoreTests.xctest"
+               BlueprintName = "StreamChatCoreTests"
+               ReferencedContainer = "container:StreamChat.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ChannelTests">
+               </Test>
+               <Test
+                  Identifier = "ClientRequestsTests">
+               </Test>
+               <Test
+                  Identifier = "ClientSetupTests">
+               </Test>
+               <Test
+                  Identifier = "ExtraDataTests">
+               </Test>
+               <Test
+                  Identifier = "TestCase">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79EE39362453204E0034EBF3"
+               BuildableName = "StreamChatClientIntegrationTests.xctest"
+               BlueprintName = "StreamChatClientIntegrationTests"
                ReferencedContainer = "container:StreamChat.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -53,12 +81,22 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      enableAddressSanitizer = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8AD5EC8E22E9A3E8005CFAC9"
+            BuildableName = "StreamChat.framework"
+            BlueprintName = "StreamChat"
+            ReferencedContainer = "container:StreamChat.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -69,7 +107,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "799C941A247D2F80001F1104"
+            BlueprintIdentifier = "8AD5EC8E22E9A3E8005CFAC9"
             BuildableName = "StreamChat.framework"
             BlueprintName = "StreamChat"
             ReferencedContainer = "container:StreamChat.xcodeproj">

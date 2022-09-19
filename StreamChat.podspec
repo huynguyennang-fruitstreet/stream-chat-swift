@@ -1,24 +1,26 @@
 Pod::Spec.new do |spec|
   spec.name = "StreamChat"
-  spec.version = "4.21.1"
-  spec.summary = "StreamChat iOS Chat Client"
-  spec.description = "stream-chat-swift is the official Swift client for Stream Chat, a service for building chat applications."
+  spec.version = "2.6.9"
+  spec.summary = "Stream iOS Chat"
+  spec.description = "stream-chat-swift is the official Swift client and UI for Stream Chat, a service for building chat applications."
 
   spec.homepage = "https://getstream.io/chat/"
   spec.license = { :type => "BSD-3", :file => "LICENSE" }
-  spec.author = { "getstream.io" => "support@getstream.io" }
+  spec.author = { "Alexey Bukhtin" => "alexey@getstream.io" }
   spec.social_media_url = "https://getstream.io"
-
   spec.swift_version = "5.2"
-  spec.ios.deployment_target  = '11.0'
-  spec.osx.deployment_target  = '10.15'
+  spec.platform = :ios, "11.0"
+  spec.source = { :git => "https://github.com/GetStream/stream-chat-swift.git", :tag => "#{spec.version}" }
   spec.requires_arc = true
 
-  spec.framework = "Foundation"
-  spec.ios.framework = "UIKit"
+  spec.source_files  = "Sources/UI/**/*.swift"
+  spec.resources = "Sources/UI/Chat.xcassets"
 
-  spec.module_name = "StreamChat"
-  spec.source = { :git => "https://github.com/GetStream/stream-chat-swift.git", :tag => "#{spec.version}" }
-  spec.source_files  = ["Sources/StreamChat/**/*.swift", "Sources/StreamStarscream/**/*.swift"]
-  spec.resource_bundles = { "StreamChat" => ["Sources/StreamChat/**/*.xcdatamodeld"] }
+  spec.framework = "Foundation", "UIKit"
+
+  spec.dependency "StreamChatCore", "#{spec.version}"
+  spec.dependency "Nuke", "~> 8.4"
+  spec.dependency "SnapKit", "~> 5.0"
+  spec.dependency "SwiftyGif", "~> 5.2.0"
+  spec.dependency "RxGesture", "~> 3.0"
 end

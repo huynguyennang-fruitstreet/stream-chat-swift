@@ -1,6 +1,8 @@
-git_url("git@github.com:GetStream/ios-certificates.git")
+git_url("https://github.com/GetStream/ios-certificates")
 
 storage_mode("git")
+
+username("bahadir.onc@icloud.com")
 
 team_id("EHV7XZLAHA")
 
